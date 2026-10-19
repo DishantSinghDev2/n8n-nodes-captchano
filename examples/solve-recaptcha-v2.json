@@ -1,0 +1,77 @@
+{
+	"name": "CaptchaNo – Solve reCAPTCHA v2 (Google demo)",
+	"nodes": [
+		{
+			"parameters": {},
+			"id": "8f0c2b7e-1b0a-4c55-9f6e-0a1d2c3b4a01",
+			"name": "When clicking ‘Execute workflow’",
+			"type": "n8n-nodes-base.manualTrigger",
+			"typeVersion": 1,
+			"position": [0, 0]
+		},
+		{
+			"parameters": {
+				"resource": "captcha",
+				"operation": "solve",
+				"captchaType": "recaptcha_v2",
+				"url": "https://www.google.com/recaptcha/api2/demo",
+				"sitekey": "6Le-wvkSAAAAAPBMRTvw0Q4Muexq9bi0DJwx_mJ-",
+				"additionalFields": {},
+				"options": {
+					"waitSeconds": 60,
+					"pollUntilReady": true,
+					"pollTimeoutSeconds": 180
+				}
+			},
+			"id": "8f0c2b7e-1b0a-4c55-9f6e-0a1d2c3b4a02",
+			"name": "Solve reCAPTCHA v2",
+			"type": "n8n-nodes-captchano.captchaNo",
+			"typeVersion": 1,
+			"position": [220, 0],
+			"credentials": {
+				"captchaNoApi": {
+					"id": "REPLACE_WITH_YOUR_CREDENTIAL_ID",
+					"name": "CaptchaNo account"
+				}
+			}
+		},
+		{
+			"parameters": {
+				"assignments": {
+					"assignments": [
+						{
+							"id": "5b1d0c1e-7a7e-4f1e-8d8a-2f3e4d5c6b01",
+							"name": "g-recaptcha-response",
+							"value": "={{ $json.token }}",
+							"type": "string"
+						},
+						{
+							"id": "5b1d0c1e-7a7e-4f1e-8d8a-2f3e4d5c6b02",
+							"name": "costUsd",
+							"value": "={{ $json.cost }}",
+							"type": "string"
+						}
+					]
+				},
+				"options": {}
+			},
+			"id": "8f0c2b7e-1b0a-4c55-9f6e-0a1d2c3b4a03",
+			"name": "Use token",
+			"type": "n8n-nodes-base.set",
+			"typeVersion": 3.4,
+			"position": [440, 0]
+		}
+	],
+	"connections": {
+		"When clicking ‘Execute workflow’": {
+			"main": [[{ "node": "Solve reCAPTCHA v2", "type": "main", "index": 0 }]]
+		},
+		"Solve reCAPTCHA v2": {
+			"main": [[{ "node": "Use token", "type": "main", "index": 0 }]]
+		}
+	},
+	"settings": {
+		"executionOrder": "v1"
+	},
+	"pinData": {}
+}

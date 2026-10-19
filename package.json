@@ -1,0 +1,63 @@
+{
+	"name": "n8n-nodes-captchano",
+	"version": "0.1.0",
+	"description": "n8n community node for CaptchaNo: solve reCAPTCHA v2/v3/Enterprise, Cloudflare Turnstile, DataDome and image captchas from your workflows and AI agents.",
+	"license": "MIT",
+	"homepage": "https://captchano.com/captcha-solver-api",
+	"keywords": [
+		"n8n-community-node-package",
+		"n8n",
+		"captchano",
+		"captcha",
+		"captcha-solver",
+		"recaptcha",
+		"turnstile",
+		"datadome"
+	],
+	"author": {
+		"name": "DishIs Technologies LLC",
+		"email": "support@captchano.com"
+	},
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/DishantSinghDev2/n8n-nodes-captchano.git"
+	},
+	"bugs": {
+		"url": "https://github.com/DishantSinghDev2/n8n-nodes-captchano/issues",
+		"email": "support@captchano.com"
+	},
+	"scripts": {
+		"build": "n8n-node build",
+		"build:watch": "tsc --watch",
+		"dev": "n8n-node dev",
+		"lint": "n8n-node lint",
+		"lint:fix": "n8n-node lint --fix",
+		"release": "n8n-node release",
+		"prepublishOnly": "n8n-node prerelease"
+	},
+	"files": [
+		"dist",
+		"!dist/**/*.tsbuildinfo",
+		"CHANGELOG.md"
+	],
+	"n8n": {
+		"n8nNodesApiVersion": 1,
+		"strict": true,
+		"credentials": [
+			"dist/credentials/CaptchaNoApi.credentials.js"
+		],
+		"nodes": [
+			"dist/nodes/CaptchaNo/CaptchaNo.node.js"
+		]
+	},
+	"devDependencies": {
+		"@n8n/node-cli": "0.52.6",
+		"eslint": "9.39.4",
+		"prettier": "3.8.3",
+		"release-it": "20.2.0",
+		"typescript": "5.9.3"
+	},
+	"peerDependencies": {
+		"n8n-workflow": "*"
+	}
+}
