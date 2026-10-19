@@ -36,7 +36,8 @@ export interface CaptchaNoTask extends IDataObject {
 	cost?: string;
 	billedFrom?: string;
 	solveTime?: number;
-	createdAt?: string;
+	/** Unix epoch milliseconds, as the API returns it. */
+	createdAt?: number;
 }
 
 export interface CaptchaNoResponse {
